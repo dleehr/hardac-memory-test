@@ -13,7 +13,7 @@ void test_read(size_t bytes, char* ptr, int expected) {
     } else {
       char *offset = ptr + b;
       int val = ptr[b];
-      printf("Error: expected byte at %p to be 0, got %d\n", offset, val);
+      printf("Error: expected byte at %p to be %d, got %d\n", offset, expected, val);
       free(ptr);
       exit(-1);
     }
