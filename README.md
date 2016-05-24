@@ -1,4 +1,4 @@
-hardac-memory-test
-==================
+memory-test
+===========
 
 C Program to allocate memory and test it
