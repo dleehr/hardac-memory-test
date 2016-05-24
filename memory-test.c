@@ -5,15 +5,15 @@
 
 static const size_t BYTES_TO_GB = 1024*1024*1024;
 
-void test_read(size_t bytes, char* ptr, int expected) {
+void test_read(size_t bytes, char* ptr, unsigned char expected) {
   printf("Testing for %d...\n", expected);
   for(size_t b=0;b<bytes;b++) {
-    if(ptr[b] == expected) {
+    unsigned char val = ptr[b];
+    if(val == expected) {
       continue;
     } else {
       char *offset = ptr + b;
-      int val = ptr[b];
-      printf("Error: expected byte at %p to be 0, got %d\n", offset, val);
+      printf("Error: expected byte at %p to be 0, got %u\n", offset, val);
       free(ptr);
       exit(-1);
     }
@@ -46,8 +46,8 @@ int main(int argc, char * argv[]) {
   test_read(bytes, ptr, 0);
 
   // Now, write and read values over and over
-  const int iterations = 10;
-  for(int i=1;i<iterations;i++) {
+  const unsigned char iterations = 255;
+  for(unsigned char i=129;i<iterations;i++) {
     write(bytes, ptr, i);
     test_read(bytes, ptr, i);
   }
